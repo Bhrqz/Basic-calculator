@@ -72,7 +72,13 @@ height: 100%;
 }
 
 .button{
+    background-image: linear-gradient(25deg, rgb(109, 109, 201), rgb(215, 228, 215));
     font-size: 35;
     height: 100%;
     width: 100%;
+    
+}
+
+:hover {
+    background-color: darkkhaki;
 }
