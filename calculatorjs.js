@@ -72,18 +72,11 @@ function toEquation(num){
                      a="";
                      break
                 }
-        
-        }
-        
-        
-        
-    }            
-    else if(isNaN(num)&&flag==1){
-        //WE HAVE TO SOLVE THE EQUAL THING HERE!!! or somewhere else
-    }                
+        } 
+    }                 
 
     
-    else if(!isNaN(num)){
+    else if(!isNaN(num)||num=="."){
         a=a+num;
         document.getElementById("result").innerHTML = a;
         console.log("a es "+a);
@@ -149,19 +142,6 @@ function clearEquation(){
     currentOperator = "";
   
 }
-//FAILED FUNCTION keep it just in case, for some reason str dont erase
-function erase(str){
-    let erased = str.slice(0,-1);
-    document.getElementById("equation").innerHTML = erased;
-   
-    return erased
-}
-
-
-
-
-
-
 /* UNDER CONSTRUCTION keyboard linking
 document.addEventListener("keydown", keyPressed(), false);
 
