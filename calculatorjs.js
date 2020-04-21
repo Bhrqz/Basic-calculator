@@ -142,12 +142,5 @@ function clearEquation(){
     currentOperator = "";
   
 }
-/* UNDER CONSTRUCTION keyboard linking
-document.addEventListener("keydown", keyPressed(), false);
 
-function keyPressed(e) {
-	if (e.keyCode === 97) {
-		toEquation(1);
-	}
-}
-*/
+
