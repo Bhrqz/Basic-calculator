@@ -117,7 +117,7 @@ function beforeExecute(a,b,operator){
             a=0;
             }}
 
-
+//the functions of the actual operators
 function sum (a, b){
     document.getElementById("result").innerHTML = parseInt(a)+parseInt(b);
     
@@ -145,8 +145,9 @@ function clearEquation(){
     document.getElementById("result").innerHTML ="0";
     a="";
     b="";
-    flag=0;
-    return str = "";
+    pendingOperator = "";
+    currentOperator = "";
+  
 }
 //FAILED FUNCTION keep it just in case, for some reason str dont erase
 function erase(str){
