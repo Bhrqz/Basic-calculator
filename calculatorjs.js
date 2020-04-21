@@ -3,102 +3,84 @@ let str = "" ;
 let a = "";
 let b = "";
 let flag = 0;
+let currentOperator = "";
+let pendingOperator = "";
 
 document.getElementById("result").innerHTML = "0";
 
 function toEquation(num){
 
     if (isNaN(num)){
-        //si es un operador
-    num == "=" ? 2 : operator = num 
-        console.log("operator es "+operator)
-        switch(num){
         
-            case "+" : 
-            if(b!==""){
-                sum(a,b);
-                b = parseInt(a)+parseInt(b);
-                a=0;
+        pendingOperator = currentOperator;
+        currentOperator = num;
 
-            }else{ 
-                b=a;
-                a=0}
-                
-            break;
+        if (!b){
+            b=a;
+            a="";
+        }
 
+        console.log("la operacion sera "+currentOperator)
+       switch (pendingOperator){
+           case "+":
+               sum(a,b);
+               b=parseInt(a)+parseInt(b);
+               a="";
+           break;
 
-
-            case "-" : 
-            if(b!==""){
+            case "-":
                 subtract(a,b);
-                b = parseInt(b)-parseInt(a);
-                a=0;
-            }else{ 
-                b=a;
-                a=0}
-                
-            break;
+                b=parseInt(b)-parseInt(a);
+                a="";
+            break
 
-
-
-            case "*" : 
-            if(b!==""){
+            case "*":
                 multiply(a,b);
-                b = parseInt(a)*parseInt(b);
-                a=0;
-            }else{ 
-                b=a;
-                a=0
-                } 
-            break;
-
-
-
-            case "/" : 
-            if(b!==""){
-                divide(a,b);
-                b = parseInt(b)/parseInt(a);
-                a=0;
-            }else{ 
-                b=a;
-                a=0
-                } 
-            break;
+                b=parseInt(a)*parseInt(b);
+                a="";
+            break
             
-
-            case "=" : 
-            
-            if(operator=="+"){
-                if(b!==""){
-                    sum(a,b);
-                    b = parseInt(a)+parseInt(b);
-                    a=0;
-                    }}
-            
-            else if(operator=="-"){
-                if(b!==""){
-                    subtract(a,b);
-                    b = parseInt(b)-parseInt(a);
-                    a=0;
-                    }}
-
-            else if (operator=="*"){
-                    if(b!==""){
-                    multiply(a,b);
-                    b = parseInt(a)*parseInt(b);
-                    a=0;
-                    }}
-            
-            else if (operator=="/"){            
-                if(b!==""){
-                    divide(a,b);
-                    b = parseInt(b)/parseInt(a);
-                    a=0;
-                    }}
-                break;
-                }}
-                
-                    
+            case "/":
+            divide(a,b);
+            b=parseInt(b)/parseInt(a);
+            a="";
+            break
+        
+            case "=":
+                switch (pendingOperator){
+                    case "+":
+                        sum(a,b);
+                        b=parseInt(a)+parseInt(b);
+                        a="";
+                    break;
+         
+                     case "-":
+                         subtract(a,b);
+                         b=parseInt(b)-parseInt(a);
+                         a="";
+                     break
+         
+                     case "*":
+                         multiply(a,b);
+                         b=parseInt(a)*parseInt(b);
+                         a="";
+                     break
+                     
+                     case "/":
+                     divide(a,b);
+                     b=parseInt(b)/parseInt(a);
+                     a="";
+                     break
+                }
+        
+        }
+        
+        
+        
+    }            
+    else if(isNaN(num)&&flag==1){
+        //WE HAVE TO SOLVE THE EQUAL THING HERE!!! or somewhere else
+    }                
 
     
     else if(!isNaN(num)){
@@ -109,6 +91,31 @@ function toEquation(num){
 
 }
 
+//failed FUNCTION keep it just in case
+function beforeExecute(a,b,operator){
+    if(operator=="+"){
+            sum(a,b);
+            b = parseInt(a)+parseInt(b);
+            a=0;
+            }
+
+    else if(operator=="-"){
+            subtract(a,b);
+            b = parseInt(b)-parseInt(a);
+            a=0;
+            }
+
+    else if (operator=="*"){
+            multiply(a,b);
+            b = parseInt(a)*parseInt(b);
+            a=0;
+            }
+
+    else if (operator=="/"){            
+            divide(a,b);
+            b = parseInt(b)/parseInt(a);
+            a=0;
+            }}
 
 
 function sum (a, b){
@@ -138,6 +145,7 @@ function clearEquation(){
     document.getElementById("result").innerHTML ="0";
     a="";
     b="";
+    flag=0;
     return str = "";
 }
 //FAILED FUNCTION keep it just in case, for some reason str dont erase
@@ -150,15 +158,7 @@ function erase(str){
 
 
 
-function operate(a, b){
-    //HERE goes all the javascript thing s to execute math
-    let total = str
-    str= "";
-    document.getElementById("equation").innerHTML =str;
-    console.log(total);
-    return document.getElementById("result").innerHTML = total
-}
-console.log(str);
+
 
 
 /* UNDER CONSTRUCTION keyboard linking
